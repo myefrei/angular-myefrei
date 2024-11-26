@@ -1,0 +1,14 @@
+<div class="student-dashboard-container">
+    <h1>Mes notes</h1>
+  
+    <mat-form-field class="search-bar" appearance="fill">
+      <mat-label>Rechercher une matière</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="filterNotes()">
+    </mat-form-field>
+  
+    <div *ngFor="let note of filteredNotes" class="note-card">
+      <h3>{{ note.subject }}</h3>
+      <p>Note : {{ note.note }}</p>
+    </div>
+  </div>
+  

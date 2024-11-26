@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import firebase from 'firebase/compat/app'; // Import `firebase/compat`
 import { Router } from '@angular/router';
-import firebase from 'firebase/compat/app';
-
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
+
+  getCurrentUser(): Promise<firebase.User | null> {
+    return this.afAuth.currentUser;
+  }
 
   login(email: string, password: string) {
     return this.afAuth
@@ -25,6 +28,6 @@ export class AuthService {
   }
 
   logout() {
-    return this.afAuth.signOut().then(() => this.router.navigate(['/login']));
+    return this.afAuth.signOut();
   }
 }
