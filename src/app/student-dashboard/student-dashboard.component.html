@@ -1,6 +1,6 @@
 <div class="student-dashboard-container">
     <h1>Mes notes</h1>
-  
+    <button mat-raised-button color="warn" (click)="logout()">Déconnexion</button>
     <mat-form-field class="search-bar" appearance="fill">
       <mat-label>Rechercher une matière</mat-label>
       <input matInput [(ngModel)]="searchTerm" (input)="filterNotes()">

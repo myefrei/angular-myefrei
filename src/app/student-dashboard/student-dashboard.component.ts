@@ -40,6 +40,12 @@ export class StudentDashboardComponent implements OnInit {
     }
   }
 
+  logout() {
+    if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+      this.authService.logout();
+    }
+  }
+
   filterNotes() {
     this.filteredNotes = this.notes.filter((note) =>
       note.subject.toLowerCase().includes(this.searchTerm.toLowerCase())

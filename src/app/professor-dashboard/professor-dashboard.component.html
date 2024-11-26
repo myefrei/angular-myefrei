@@ -2,7 +2,7 @@
     <h1>Tableau de bord Professeur</h1>
   
     <button mat-raised-button color="primary" (click)="addClass()">Ajouter une classe</button>
-  
+    <button mat-raised-button color="warn" (click)="logout()">Déconnexion</button>
     <div *ngFor="let class of classes" class="class-card">
       <h2>{{ class.name }}</h2>
       <button mat-button color="accent" (click)="viewStudents(class.id)">Voir les élèves</button>

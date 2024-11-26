@@ -28,6 +28,13 @@ export class AuthService {
   }
 
   logout() {
-    return this.afAuth.signOut();
+    return this.afAuth
+      .signOut()
+      .then(() => {
+        this.router.navigate(['/login']); // Redirige vers la page de connexion après déconnexion
+      })
+      .catch((error) => {
+        console.error('Erreur lors de la déconnexion', error);
+      });
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-professor-dashboard',
@@ -9,10 +10,19 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class ProfessorDashboardComponent implements OnInit {
   classes: any[] = [];
 
-  constructor(private firestore: AngularFirestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.getClasses();
+  }
+
+  logout() {
+    if (confirm('Voulez-vous vraiment vous déconnecter ?')) {
+      this.authService.logout();
+    }
   }
 
   getClasses() {
