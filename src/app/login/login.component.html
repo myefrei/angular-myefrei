@@ -1,0 +1,18 @@
+<div class="login-container">
+    <h1>Bienvenue sur MyEFREI</h1>
+    <p>Connectez-vous pour accéder à votre tableau de bord.</p>
+    <form (ngSubmit)="login()">
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" required>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password" required>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit">Connexion</button>
+    </form>
+  </div>
+  
