@@ -12,12 +12,20 @@ import { environment } from '../environment/environment';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProfessorDashboardComponent } from './professor-dashboard/professor-dashboard.component';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { RegisterComponent } from './register/register.component';
 @NgModule({
-  declarations: [AppComponent, LoginComponent, ProfessorDashboardComponent, StudentDashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    ProfessorDashboardComponent,
+    StudentDashboardComponent,
+    RegisterComponent,
+  ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

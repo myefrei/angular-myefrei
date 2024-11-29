@@ -1,18 +1,30 @@
+
 <div class="login-container">
-    <h1>Bienvenue sur MyEFREI</h1>
-    <p>Connectez-vous pour accéder à votre tableau de bord.</p>
-    <form (ngSubmit)="login()">
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput type="email" [(ngModel)]="email" name="email" required>
-      </mat-form-field>
-  
-      <mat-form-field appearance="fill">
-        <mat-label>Mot de passe</mat-label>
-        <input matInput type="password" [(ngModel)]="password" name="password" required>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit">Connexion</button>
-    </form>
-  </div>
-  
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" formControlName="email" placeholder="email" required>
+      <div *ngIf="f['email']?.invalid && f['email']?.touched" class="invalid-feedback">
+      <small *ngIf="f['email']?.errors?.['required']">Email is required.</small>
+      <small *ngIf="f['email']?.errors?.['email']">Enter a valid email address.</small>
+    </div>
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <div *ngIf="f['password']?.invalid && f['password']?.touched" class="invalid-feedback">
+        <small *ngIf="f['password']?.errors?.['required']">Password is required.</small>
+        <small *ngIf="f['password']?.errors?.['minlength']">
+          Password must be at least 6 characters long.
+        </small>
+      </div>
+    </div>
+    <button type="submit"  [disabled]="loginForm.invalid">Sign In</button>
+    <a  routerLink="/register" >Register New</a>
+  </form>
+</div>
+

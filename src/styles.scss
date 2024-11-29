@@ -1,0 +1,99 @@
+:root {
+  --primary-color: #7f4f8c;
+  --secondary-color: #b4b6d9;
+  --accent-color: #405673;
+  --highlight-color: #157ebf;
+  --background-color: #f2f2f2;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  font-family: Arial, sans-serif;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 10px;
+}
+
+.card {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  background-color: var(--highlight-color);
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.card:hover {
+  background-color: var(--accent-color);
+}
+/* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #9da1e5; /* Background color */
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #7f4f8c;
+  color: #f2f2f2;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+}
+
+footer {
+  background-color: #405673;
+  color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.container {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #ffffff;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid #b4b6d9;
+  text-align: left;
+}
+
+th {
+  background-color: #b4b6d9;
+}
+
+.btn {
+  padding: 8px 12px;
+  margin: 0 5px;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: #157ebf;
+}
+
+.btn-delete {
+  background-color: #7f4f8c;
+}
