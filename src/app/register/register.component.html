@@ -1,0 +1,77 @@
+
+<div class="login-container">
+  <h1>Register</h1>
+  <div class="tabs">
+    <button
+      [ngClass]="{ active: selectedTab === 'student' }"
+      (click)="selectedTab = 'student'"
+    >
+      Student
+    </button>
+    <button
+      [ngClass]="{ active: selectedTab === 'professor' }"
+      (click)="selectedTab = 'professor'"
+    >
+      Professor
+    </button>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <input type="text" formControlName="name" placeholder="name" required>
+      <div *ngIf="f['name']?.invalid && f['name']?.touched" class="invalid-feedback">
+      <small *ngIf="f['name']?.errors?.['required']">name is required.</small>
+    </div>
+    </div>
+    <div class="form-group">
+      <input type="text" formControlName="email" placeholder="email" required>
+      <div *ngIf="f['email']?.invalid && f['email']?.touched" class="invalid-feedback">
+      <small *ngIf="f['email']?.errors?.['required']">Email is required.</small>
+      <small *ngIf="f['email']?.errors?.['email']">Enter a valid email address.</small>
+    </div>
+    </div>
+    <div class="form-group">
+      <input
+        type="password"
+        id="password"
+        formControlName="password"
+        class="form-control"
+      />
+      <div *ngIf="f['password']?.invalid && f['password']?.touched" class="invalid-feedback">
+        <small *ngIf="f['password']?.errors?.['required']">Password is required.</small>
+        <small *ngIf="f['password']?.errors?.['minlength']">
+          Password must be at least 6 characters long.
+        </small>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="selectedTab == 'student'">
+      <input
+        type="text"
+        id="class"
+        formControlName="class_name"
+        placeholder="Please enter Class name"
+        class="form-control"
+      />
+      <div *ngIf="f['class']?.invalid && f['class']?.touched" class="invalid-feedback">
+        <small>Class name is required.</small>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="selectedTab != 'student'">
+      <input
+        type="text"
+        id="class"
+        formControlName="subject_name"
+        placeholder="Please enter subject name"
+        class="form-control"
+        required
+      />
+      <div *ngIf="f['class']?.invalid && f['class']?.touched" class="invalid-feedback">
+        <small>Subject is required.</small>
+      </div>
+    </div>
+    <button type="submit"  [disabled]="registerForm.invalid" >Register</button>
+    <a  routerLink="/login" >Already Account.</a>
+  </form>
+</div>
+
+
