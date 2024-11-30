@@ -2,11 +2,18 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app'; // Import `firebase/compat`
 import { Router } from '@angular/router';
+import { Observable, of, switchMap } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { map } from 'rxjs/operators';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private firestore: AngularFirestore
+  ) {}
 
   getCurrentUser(): Promise<firebase.User | null> {
     return this.afAuth.currentUser;
@@ -14,16 +21,6 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.afAuth.signInWithEmailAndPassword(email, password);
-    // .then((userCredential) => {
-    //   const role = 'prof';
-    //   const redirectPath =
-    //     role === 'prof' ? '/prof-dashboard' : '/student-dashboard';
-    //   this.router.navigate([redirectPath]);
-    // })
-    // .catch((error) => {
-    //   console.error('Erreur de connexion', error);
-    //   alert('Erreur : ' + error.message);
-    // });
   }
 
   register(email: string, password: string): Promise<any> {
@@ -50,13 +47,51 @@ export class AuthService {
       });
   }
 
+  isLoggedIn(): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      this.afAuth.authState.subscribe((user) => {
+        if (user) {
+          observer.next(true); // User is logged in
+        } else {
+          observer.next(false); // No user logged in
+        }
+      });
+    });
+  }
+
+  getLoginUser(): Observable<any> {
+    return this.afAuth.authState.pipe(
+      switchMap((user) => {
+        if (user) {
+          // Fetch user document from Firestore
+          const userf = this.firestore.collection('users').doc(user.uid).get();
+          return userf;
+        } else {
+          return of(null); // Return null if no user
+        }
+      }),
+      map((userDoc) =>
+        userDoc ? { user: userDoc.data(), id: userDoc.id } : null
+      ) // Map Firestore document to its data
+    );
+  }
+
+  async getUserRole(): Promise<any> {
+    const user = await this.getCurrentUser();
+    if (user) {
+      const userRole = this.firestore
+        .collection('users')
+        .doc(user.uid)
+        .valueChanges()
+        .pipe(
+          map((userData: any) => userData.role) // Assuming the role is stored as 'role'
+        );
+
+      return userRole;
+    }
+  }
+
   logout() {
     return this.afAuth.signOut();
-    // .then(() => {
-    //   this.router.navigate(['/login']); // Redirige vers la page de connexion après déconnexion
-    // })
-    // .catch((error) => {
-    //   console.error('Erreur lors de la déconnexion', error);
-    // });
   }
 }

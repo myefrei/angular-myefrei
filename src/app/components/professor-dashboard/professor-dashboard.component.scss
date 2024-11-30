@@ -1,0 +1,206 @@
+/* General Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  overflow: hidden; /* Prevent overall page scrolling */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body takes at least the full height of the viewport */
+}
+
+main {
+  flex-grow: 1; /* Allow the main content area to expand and take available space */
+  overflow-y: auto; /* Allow vertical scrolling for content */
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #003366;
+  color: #fff;
+  border-bottom: 2px solid #ddd;
+}
+
+.header .left {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header .title {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.header .title p {
+  font-size: 14px;
+  margin-top: 5px;
+  color: #e6e6e6;
+}
+
+.header .right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.logoutBtn {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 25px;
+  background-color: #cc0000;
+  text-align: center;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background-color: #990000;
+}
+
+/* Form Container */
+.form-container {
+  margin: 15px; /* Reduced margin for better spacing */
+  background-color: #fff;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  width: 100%; /* Ensure forms take full available width */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+form input,
+form select {
+  padding: 12px 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%; /* Full width */
+}
+
+form input::placeholder {
+  color: #aaa;
+}
+
+form select {
+  width: 100%;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  width: 100%; /* Button width to 100% */
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 15px 0;
+  background-color: #003366;
+  color: #fff;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Course Container */
+.course-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.date-container {
+  display: flex;
+  align-items: center;
+}
+
+.date-container .label {
+  flex: none;
+}
+
+/* Date Picker */
+.datepicker {
+  display: flex;
+  align-items: center;
+}
+
+.mat-datepicker-toggle {
+  margin-left: 10px;
+}
+
+/* Select and Input Styles */
+label {
+  font-size: 14px;
+  color: #333;
+}
+
+select,
+input {
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+select:focus,
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+input[type="number"] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+/* Forms Layout */
+.forms {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Adds space between the forms */
+  width: 100%;
+}
+
+.forms .form-container {
+  width: 48%; /* Set each form container to 48% of the container width */
+  height: auto; /* Ensures both forms have the same height */
+}

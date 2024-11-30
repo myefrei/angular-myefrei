@@ -1,0 +1,37 @@
+<h3 class="title">Attendance</h3>
+<table class="attendance-table">
+  <thead>
+    <tr>
+      <th>Class Name</th>
+      <th>Course Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Attendance</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let course of courseList">
+      <td>{{ course?.className }}</td>
+      <td>{{ course?.courseName }}</td>
+      <td>{{ course?.startTime }}</td>
+      <td>{{ course?.endTime }}</td>
+      <td>
+        <ul class="attendance-list">
+          <li *ngFor="let student of course.students">
+            <span class="student-name">{{ student.name }}</span>
+            <span class="attendance-status">{{
+              student.attendance ? "Présent" : "Absent"
+            }}</span>
+          </li>
+        </ul>
+      </td>
+      <td class="action-buttons">
+        <button class="btn btn-edit" (click)="editCourse(course)">Edit</button>
+        <button class="btn btn-delete" (click)="deleteCourse(course)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

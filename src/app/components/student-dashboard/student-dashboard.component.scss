@@ -1,0 +1,104 @@
+.logoutBtn {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  padding: 10px 18px;
+  border-radius: 20px;
+  background-color: black;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.logoutBtn:hover {
+  background-color: black;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.header .left {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.header .title {
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.header .title p {
+  font-size: 12px;
+  margin-top: 5px;
+  color: white;
+}
+
+.header .right {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-container {
+  margin-bottom: 25px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+form label {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+form input,
+form select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+}
+
+form input::placeholder {
+  color: #aaa;
+}
+
+form select {
+  width: 200px;
+}
+
+.btn-submit {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.btn-submit:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 10px 0;
+  background-color: #fff;
+  color: #777;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+}

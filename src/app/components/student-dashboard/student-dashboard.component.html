@@ -1,0 +1,62 @@
+<header class="header">
+  <div class="left">MyEfrei</div>
+  <div class="title">
+    Student Dashboard
+    <p>{{ loginUser?.user?.email }}</p>
+  </div>
+  <div class="right">
+    <a href="javascript:;" (click)="logout()" class="logoutBtn">Logout</a>
+  </div>
+</header>
+<div class="container">
+  <h2>Grades</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Professor Name</th>
+        <th>Professor Email</th>
+        <th>Subject</th>
+        <th>Grade</th>
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let grade of gradeList">
+        <td>{{ grade?.professorDetails?.name }}</td>
+        <td>{{ grade?.professorDetails?.email }}</td>
+        <td>{{ grade?.professorDetails?.subject_name }}</td>
+        <td>{{ grade?.grade }}</td>
+      </tr>
+
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+  <h2>Attendance</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Class Name</th>
+        <th>Course Name</th>
+        <th>Date</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Attendance</th>
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courseList">
+        <td>{{ course?.className }}</td>
+        <td>{{ course?.courseName }}</td>
+        <td>{{ course?.date }}</td>
+        <td>{{ course?.startTime }}</td>
+        <td>{{ course?.endTime }}</td>
+        <td>{{ course?.attendance }}</td>
+      </tr>
+
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+</div>
+
+<footer>2024 Myefrei</footer>

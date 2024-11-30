@@ -1,0 +1,154 @@
+<header class="header">
+  <div class="left">MyEfrei</div>
+  <div class="title">
+    Professor Dashboard
+    <p>{{ loginUser?.user?.email }}</p>
+  </div>
+  <div class="right">
+    <a href="javascript:;" (click)="logout()" class="logoutBtn">Logout</a>
+  </div>
+</header>
+<div class="container">
+  <div class="forms">
+    <div class="form-container">
+      <form (ngSubmit)="onSubmit()">
+        <label for="role">Select Studend:</label>
+        <select id="role" [(ngModel)]="formData.studentId" name="role">
+          <option value="" disabled>Select a student</option>
+          <option [value]="student?._id" *ngFor="let student of studendList">
+            {{ student?.name }} -- {{ student?.email }}
+          </option>
+        </select>
+
+        <label for="class">Grade:</label>
+        <input
+          type="text"
+          id="class"
+          [(ngModel)]="formData.grade"
+          name="class"
+          placeholder="Enter Grade"
+        />
+
+        <button type="submit" class="btn btn-submit">
+          {{ formIsEdit ? "Edit" : "Add" }} Grade
+        </button>
+      </form>
+    </div>
+    <div class="form-container">
+      <form (ngSubmit)="onSubmitCourse()">
+        <!-- Class Selection -->
+        <label for="classId">Select Class:</label>
+        <select
+          id="classId"
+          [(ngModel)]="courseFormData.classId"
+          name="classId"
+          (change)="onClassSelect()"
+        >
+          <option [value]="class._id" *ngFor="let class of classList">
+            {{ class?.name }}
+          </option>
+        </select>
+
+        <label for="className">Course Name:</label>
+        <input
+          type="text"
+          id="courseName"
+          [(ngModel)]="courseFormData.courseName"
+          name="courseName"
+        />
+
+        <!-- Course Date -->
+        <label for="courseDate">Select Course Date:</label>
+        <div class="datepicker">
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="courseFormData.date"
+            name="courseDate"
+            id="courseDate"
+            placeholder="Choose a date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+
+        <!-- Start Time -->
+        <label for="startTime">Select Start Time:</label>
+        <input
+          type="time"
+          id="startTime"
+          [(ngModel)]="courseFormData.startTime"
+          name="startTime"
+          placeholder="Enter Start Time (HH)"
+          min="0"
+          max="23"
+        />
+
+        <!-- End Time -->
+        <label for="endTime">Select End Time:</label>
+        <input
+          type="time"
+          id="endTime"
+          [(ngModel)]="courseFormData.endTime"
+          name="endTime"
+          placeholder="Enter End Time (HH)"
+          min="0"
+          max="23"
+        />
+
+        <div *ngIf="courseFormData.students.length > 0">
+          <label for="studentId">Select Student:</label>
+          <select
+            id="studentId"
+            [(ngModel)]="selectedStudentId"
+            name="studentId"
+          >
+            <option value="" disabled>Select a student</option>
+            <option
+              [value]="student._id"
+              *ngFor="let student of courseFormData.students"
+            >
+              {{ student?.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Attendance Select Dropdown (only visible when a student is selected) -->
+        <div *ngIf="selectedStudentId">
+          <label for="attendance"
+            >Attendance for {{ selectedStudentId }}:</label
+          >
+          <select
+            id="attendance"
+            [(ngModel)]="attendanceStatus"
+            name="attendance"
+          >
+            <option value="present">Present</option>
+            <option value="absent">Absent</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-submit">
+          {{ formIsEditCourse ? "Edit" : "Add" }} Course
+        </button>
+      </form>
+    </div>
+  </div>
+  <app-subject-details
+    [gradeList]="gradeList"
+    (subjectEdit)="editGrade($event)"
+    (subjectDeleted)="deleteGrade($event)"
+  ></app-subject-details>
+
+  <app-course-details
+    [courseList]="courseList"
+    (courseEdit)="editCourse($event)"
+    (courseDeleted)="deleteCourse($event)"
+  ></app-course-details>
+</div>
+
+<footer>2024 Myefrei</footer>

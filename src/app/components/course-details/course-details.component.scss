@@ -1,0 +1,95 @@
+/* Table Styling */
+.title {
+  color: #fff;
+  border-bottom: 2px solid #ddd;
+  width: 80%; /* La table prend seulement la place nécessaire */
+  margin: 20px auto;
+}
+.attendance-table {
+  width: 80%; /* La table prend seulement la place nécessaire */
+  margin: 15px auto; /* Réduit l'espacement entre la table et les autres éléments */
+  border-collapse: collapse;
+  border-radius: 8px; /* Bordures arrondies plus petites */
+  overflow: hidden; /* Pour éviter les débordements */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.attendance-table th,
+.attendance-table td {
+  padding: 8px 12px; /* Espacement intérieur réduit */
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.attendance-table th {
+  background-color: #003366;
+  color: #fff;
+  font-weight: bold;
+  font-size: 13px; /* Taille de texte plus petite pour les titres */
+}
+
+.attendance-table td {
+  background-color: #fff;
+  font-size: 12px; /* Taille de texte réduite */
+}
+
+.attendance-table tr:hover {
+  background-color: #f9f9f9; /* Changement de fond au survol de la ligne */
+}
+
+/* Attendance List */
+.attendance-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.attendance-list li {
+  margin: 4px 0; /* Moins d'espacement entre les éléments de la liste */
+  font-size: 12px;
+}
+
+.student-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.attendance-status {
+  font-size: 11px;
+  color: #666;
+  padding-left: 8px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 8px; /* Moins d'écart entre les boutons */
+  justify-content: center;
+}
+
+.btn {
+  padding: 5px 10px; /* Boutons plus petits */
+  font-size: 11px; /* Taille du texte plus petite */
+  border: none;
+  border-radius: 4px; /* Bordures des boutons plus petites */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #0056b3;
+}
+
+.btn-delete {
+  background-color: #cc0000;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #990000;
+}

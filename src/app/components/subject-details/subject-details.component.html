@@ -1,0 +1,28 @@
+<h3 class="title">Grades</h3>
+<table class="attendance-table">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Student Email</th>
+      <th>Class</th>
+      <th>Grade</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let grade of gradeList">
+      <td>{{ grade?.studentDetails?.name }}</td>
+      <td>{{ grade?.studentDetails?.email }}</td>
+      <td>{{ grade?.studentDetails?.class_name }}</td>
+      <td>{{ grade?.grade }}</td>
+      <td class="action-buttons">
+        <button class="btn btn-edit" (click)="editGrade(grade)">Edit</button>
+        <button class="btn btn-delete" (click)="deleteGrade(grade)">
+          Delete
+        </button>
+      </td>
+    </tr>
+
+    <!-- Add more rows as needed -->
+  </tbody>
+</table>
