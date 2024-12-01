@@ -10,13 +10,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class StudentService {
   constructor(private firestore: AngularFirestore) {}
 
-  getStudentData() {
-    return [
-      { id: 1, name: 'Math', grade: 'A', professor: 'Prof. John' },
-      { id: 2, name: 'Science', grade: 'B', professor: 'Prof. Alice' },
-    ];
-  }
-
   getList(): Observable<any> {
     return this.firestore
       .collection('users', (ref) => ref.where('role', '==', 'student'))
