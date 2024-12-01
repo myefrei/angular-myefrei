@@ -177,7 +177,7 @@ const seed = async () => {
   const isUsersEmpty = await isCollectionEmpty('users');
   if (!isUsersEmpty) {
     console.log(
-      'Seed already settled, skipping seed ;), The App will start now wait a moment......'
+      'Seed already settled, skipping seed ;), The App can start now ......'
     );
     return;
   }
@@ -189,7 +189,7 @@ const seed = async () => {
     // Now seed classes, grades, and courses with the auth user data
     await seedClassesGradesCourses(users);
 
-    console.log('Seeding complete. The App will start now wait a moment...');
+    console.log('Seeding complete. The App can start now ......');
     return;
   } catch (error) {
     console.error('Error during seeding:', error);

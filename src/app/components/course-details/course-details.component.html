@@ -4,6 +4,7 @@
     <tr>
       <th>Class Name</th>
       <th>Course Name</th>
+      <th>Date</th>
       <th>Start Date</th>
       <th>End Date</th>
       <th>Attendance</th>
@@ -14,6 +15,7 @@
     <tr *ngFor="let course of courseList">
       <td>{{ course?.className }}</td>
       <td>{{ course?.courseName }}</td>
+      <td>{{ course?.date }}</td>
       <td>{{ course?.startTime }}</td>
       <td>{{ course?.endTime }}</td>
       <td>

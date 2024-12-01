@@ -53,7 +53,6 @@ export class ProfessorDashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loginUser = this.authService.getLoginUser().subscribe({
       next: (userData) => {
-        console.log('Login User Data:', userData);
         const { user, id } = userData;
         this.loginUser.user = { ...user, _id: id };
 
@@ -70,7 +69,6 @@ export class ProfessorDashboardComponent implements OnInit {
 
   // Submit course creation
   onSubmitCourse() {
-    console.log('Course Form submitted with data:', this.courseFormData);
     // Add the professorId and subjectName
     let params = { ...this.courseFormData };
     params.className = this.classList.find(
@@ -88,11 +86,10 @@ export class ProfessorDashboardComponent implements OnInit {
         return student;
       });
     }
-    console.log('Course Params:', params);
+
     // Call Firestore service to add the course
     this.professorService.addCourse(params, this.formIsEditCourse).subscribe({
       next: (response: any) => {
-        console.log('Course created successfully:', response);
         // Reset form data
         this.courseFormData = {
           className: '',
@@ -114,15 +111,13 @@ export class ProfessorDashboardComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log('Form submitted with data:', this.formData);
     let params: any = this.formData;
     params.subjectName = this.loginUser?.user?.subject_name;
     params.professorId = this.loginUser?.user._id;
-    console.log('params', params);
+
     // Logic to handle form submission (e.g., add a new entry to the table)
     this.professorService.addstudent(params, this.formIsEdit).subscribe({
-      next: (response: any) => {
-        console.log('response ===>', response);
+      next: () => {
         this.formIsEdit = '';
         this.formData = {
           studentId: '',
@@ -145,7 +140,6 @@ export class ProfessorDashboardComponent implements OnInit {
   getCourseList() {
     this.professorService.getCourseList().subscribe({
       next: (response: any) => {
-        console.log(response, 'respijhrgiuezhgriehonse');
         this.courseList = response;
       },
       error: (error: any) => {
@@ -158,7 +152,6 @@ export class ProfessorDashboardComponent implements OnInit {
   getStudendList() {
     this.studentService.getList().subscribe({
       next: (response: any) => {
-        console.log(response, 'response');
         this.studendList = response;
       },
       error: (error: any) => {
@@ -171,7 +164,6 @@ export class ProfessorDashboardComponent implements OnInit {
   getClassList() {
     this.professorService.getClassList(this.loginUser?.user._id).subscribe({
       next: (response: any) => {
-        console.log(response, 'respongggse');
         this.classList = response; // Store the class list
       },
       error: (error: any) => {
@@ -186,16 +178,13 @@ export class ProfessorDashboardComponent implements OnInit {
       (c: { _id: string }) => c._id === this.courseFormData.classId
     );
     this.courseFormData.students = selectedClass ? selectedClass.students : [];
-    console.log('courseFormData', this.courseFormData);
   }
 
   getGradeList() {
-    console.log('loginUser', this.loginUser);
     this.professorService
       .getGradeList(this.loginUser?.user._id, this.loginUser?.user.role)
       .subscribe({
         next: (response: any) => {
-          console.log('gradeList', response);
           this.gradeList = response;
         },
         error: (error: any) => {
@@ -206,14 +195,12 @@ export class ProfessorDashboardComponent implements OnInit {
   }
 
   editGrade(grade: any) {
-    console.log('Edit grade:', grade);
     this.formData.studentId = grade.studentId;
     this.formData.grade = grade.grade;
     this.formIsEdit = grade?._id;
   }
 
   editCourse(course: any) {
-    console.log('Edit course:', course);
     this.courseFormData.classId = course.classId;
     this.courseFormData.courseName = course.courseName;
     this.courseFormData.date = course.date.toDate();
@@ -226,7 +213,6 @@ export class ProfessorDashboardComponent implements OnInit {
   deleteCourse(grade: any) {
     this.professorService.deleteCourse(grade?._id).subscribe({
       next: () => {
-        console.log('Course deleted successfully');
         this.getGradeList(); // Refresh the list
       },
       error: (error: any) => {
@@ -239,7 +225,6 @@ export class ProfessorDashboardComponent implements OnInit {
   deleteGrade(grade: any) {
     this.professorService.deleteGrade(grade?._id).subscribe({
       next: () => {
-        console.log('Grade deleted successfully');
         this.getGradeList(); // Refresh the list
       },
       error: (error: any) => {

@@ -65,8 +65,6 @@ export class RegisterComponent implements OnInit {
         subject_name: params.subject_name || null,
       });
 
-      // Navigate to the login page after successful registration
-      console.log('Registration successful');
       this.router.navigate(['/login']);
     } catch (error) {
       console.error('Registration failed', error);

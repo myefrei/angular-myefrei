@@ -41,6 +41,7 @@ export class ProfessorService {
         map((actions) =>
           actions.map((a) => {
             const data: any = a.payload.doc.data();
+            data.date = data?.date?.toDate();
             const _id = a.payload.doc.id;
             return { _id, ...data }; // Combine the ID with the document data
           })
@@ -83,6 +84,7 @@ export class ProfessorService {
           return { _id, ...data }; // Combine ID with the grade data
         })
       ),
+
       switchMap((grades) => {
         // Fetch student details for each grade
         let userFetches: Observable<any>[] = [];
