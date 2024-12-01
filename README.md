@@ -203,5 +203,6 @@ service cloud.firestore {
 
 - Ensure Firebase credentials in `environment.ts` are correct.
 - Check the Firebase Console for seeded data under the `users`, `classes`, `grades`, and `courses` collections.
+- Please refresh when you're logged the init of styles is broken
 
 Made by Mehdi - Bakary - Soufiane
